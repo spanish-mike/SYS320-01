@@ -1,0 +1,1 @@
+Get-Service | Where-Object {$_.Status -like "Stopped"} | SELECT DisplayName | Out-File -FilePath ".\processManagementQ3Output.csv"

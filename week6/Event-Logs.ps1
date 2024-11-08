@@ -38,7 +38,11 @@ return $loginoutsTable
 ****************************** #>
 function getFailedLogins($timeBack){
   
+  Write-Host "function started"
+
   $failedlogins = Get-EventLog security -After (Get-Date).AddDays("-"+"$timeBack") | Where { $_.InstanceID -eq "4625" }
+
+  $failedlogins
 
   $failedloginsTable = @()
   for($i=0; $i -lt $failedlogins.Count; $i++){
@@ -62,5 +66,6 @@ function getFailedLogins($timeBack){
 
     }
 
+    Write-Host "returning..."
     return $failedloginsTable
 } # End of function getFailedLogins
